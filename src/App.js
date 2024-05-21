@@ -7,16 +7,16 @@ class App extends Component {
     super();
     
     this.state = {
-      csrd_sectors : []
+      csrd_datapoints : []
     };
   }
   componentDidMount() {
-    fetch('https://otso-csrd.s3.eu-west-1.amazonaws.com/json/esr_sectors.json')
+    fetch('https://otso-csrd.s3.eu-west-1.amazonaws.com/json/esrs_dp.json')
       .then((response) => response.json())
-      .then((sectors) =>
+      .then((datapoints) =>
         this.setState(
           () => {
-            return {csrd_sectors : sectors};
+            return {csrd_datapoints : datapoints};
           },
           () => {
             console.log(this.state);
@@ -27,8 +27,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.csrd_sectors.map((sector) => {
-          return <h1 key={sector.id}>{sector.sector}</h1>
+        {this.state.csrd_datapoints.map((datapoint) => {
+          return <h1 key={datapoint.id}>{datapoint.Name}</h1> 
         })}
       </div>
     );    
